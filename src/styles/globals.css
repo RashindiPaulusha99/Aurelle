@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* ---- Brand design tokens ---- */
+  --color-ivory: #f6f1ea;
+  --color-ink: #161412;
+  --color-terracotta: #b4532a;
+  --color-sand: #e8ddcc;
+  --color-stone: #8a8178;
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+
+  /* sharp editorial radius: 2px on interactive elements */
+  --radius-ui: 2px;
+
+  --breakpoint-xs: 375px;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+  }
+
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img,
+  picture,
+  video {
+    border-radius: 0;
+    display: block;
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  button {
+    font-family: var(--font-body);
+  }
+
+  /* Hand cursor on every clickable control. Tailwind's preflight resets button/select
+     cursors to default, so this restores the expected affordance site-wide instead of
+     adding cursor-pointer to each component by hand. Disabled controls stay not-allowed. */
+  button:not(:disabled),
+  a,
+  select,
+  summary,
+  label[for],
+  [role="button"]:not([aria-disabled="true"]),
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="submit"],
+  input[type="button"] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .accent-italic {
+    font-style: italic;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .focus-ring {
+    outline: none;
+  }
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--color-terracotta);
+    outline-offset: 2px;
+  }
+}
