@@ -7,8 +7,8 @@ export interface CategoryTile {
 
 export const CATEGORY_TILES: CategoryTile[] = [
   { id: "cat-dresses", label: "Dresses", href: "/catalog?category=women&sub=dresses", seed: "tile-dresses" },
-  { id: "cat-tops", label: "Tops & Shirts", href: "/catalog?category=women&sub=tops", seed: "tile-tops" },
-  { id: "cat-men", label: "Men's Casual", href: "/catalog?category=men", seed: "tile-men" },
+  { id: "cat-tops", label: "Tops & Blouses", href: "/catalog?category=women&sub=tops", seed: "tile-tops" },
+  { id: "cat-bottoms", label: "Bottoms", href: "/catalog?category=women&sub=bottoms", seed: "tile-bottoms" },
   { id: "cat-accessories", label: "Accessories", href: "/catalog?category=accessories", seed: "tile-accessories" },
 ];
 
@@ -21,15 +21,6 @@ export const NAV_CATEGORIES = [
       { label: "Tops", href: "/catalog?category=women&sub=tops" },
       { label: "Bottoms", href: "/catalog?category=women&sub=bottoms" },
       { label: "Occasion Wear", href: "/catalog?category=women&sub=occasion" },
-    ],
-  },
-  {
-    label: "Men",
-    href: "/catalog?category=men",
-    children: [
-      { label: "Shirts", href: "/catalog?category=men&sub=shirts" },
-      { label: "T-Shirts", href: "/catalog?category=men&sub=tshirts" },
-      { label: "Trousers", href: "/catalog?category=men&sub=trousers" },
     ],
   },
   {

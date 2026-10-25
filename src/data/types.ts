@@ -42,7 +42,7 @@ export interface Product {
   id: string;
   slug: string;
   name: string;
-  category: "women" | "men" | "accessories";
+  category: "women" | "accessories";
   subcategory: string;
   tags: string[]; // "new", "sale", "best-seller"
   priceCents: number;

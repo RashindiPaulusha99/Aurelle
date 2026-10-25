@@ -114,7 +114,6 @@ export function AdminProductForm() {
         <div className="grid gap-4 sm:grid-cols-2">
           <Select label="Category" value={product.category} onChange={(e) => setProduct({ ...product, category: e.target.value as Product["category"] })}>
             <option value="women">Women</option>
-            <option value="men">Men</option>
             <option value="accessories">Accessories</option>
           </Select>
           <Input label="Subcategory" value={product.subcategory} onChange={(e) => setProduct({ ...product, subcategory: e.target.value })} />

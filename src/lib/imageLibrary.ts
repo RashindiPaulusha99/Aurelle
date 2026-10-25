@@ -17,9 +17,9 @@ interface Bucket {
 
 const BUCKETS: Bucket[] = [
   {
-    // Category tiles use seeds like "tile-dresses"/"tile-tops"/"tile-men"/"tile-accessories" —
-    // matched explicitly, ahead of the generic buckets below, so e.g. "tile-men" (Men's Casual
-    // tile) can't accidentally fall through to a product-level "men" keyword match instead.
+    // Category tiles use seeds like "tile-dresses"/"tile-tops"/"tile-bottoms"/"tile-accessories" —
+    // matched explicitly, ahead of the generic buckets below, so each tile gets a specific photo
+    // rather than falling through to whatever a generic keyword match happens to pick.
     keywords: ["tile-dresses"],
     photoIds: ["1515372039744-b8f02a3ae446"],
   },
@@ -28,8 +28,8 @@ const BUCKETS: Bucket[] = [
     photoIds: ["1770294758906-c8762abb2c8b"],
   },
   {
-    keywords: ["tile-men"],
-    photoIds: ["1627686011747-74adda3d2343"],
+    keywords: ["tile-bottoms"],
+    photoIds: ["1687825515654-23620796760c"],
   },
   {
     keywords: ["tile-accessories"],
@@ -56,19 +56,6 @@ const BUCKETS: Bucket[] = [
     photoIds: [
       "1687825515654-23620796760c", // green wide-leg trousers
       "1790384074526-30550d190a7c", // burgundy wide-leg trousers
-    ],
-  },
-  {
-    keywords: ["oxford-check-shirt", "resort-shirt"],
-    photoIds: [
-      "1627686011747-74adda3d2343", // linen resort shirt on model
-    ],
-  },
-  {
-    keywords: ["tee", "crewneck"],
-    photoIds: [
-      "1775816364124-b305f2b06ce7", // lilac polo, catalog shot
-      "1775306413232-fecd45367613", // light blue polo, catalog shot
     ],
   },
   {
@@ -120,7 +107,7 @@ const BUCKETS: Bucket[] = [
 
 const FALLBACK_PHOTO_IDS = [
   "1515372039744-b8f02a3ae446",
-  "1627686011747-74adda3d2343",
+  "1770294758906-c8762abb2c8b",
   "1605733513597-a8f8341084e6",
 ];
 

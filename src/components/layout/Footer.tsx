@@ -4,8 +4,8 @@ const COLUMNS = [
   {
     heading: "Shop",
     links: [
-      { label: "Women", href: "/catalog?category=women" },
-      { label: "Men", href: "/catalog?category=men" },
+      { label: "Dresses", href: "/catalog?category=women&sub=dresses" },
+      { label: "Tops", href: "/catalog?category=women&sub=tops" },
       { label: "Accessories", href: "/catalog?category=accessories" },
       { label: "Sale", href: "/catalog?tag=sale" },
     ],
