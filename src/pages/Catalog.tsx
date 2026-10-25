@@ -61,6 +61,7 @@ export function Catalog() {
   const allSizes = getAllSizes();
 
   const heading = filters.tag === "sale" ? "Sale" : filters.category ? titleCase(filters.category) : "All Products";
+  const isComingSoon = visibleProducts.length === 0 && isUnfilteredEmptyCategory(filters);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -69,59 +70,71 @@ export function Catalog() {
           <h1 className="font-display text-3xl">{heading}</h1>
           <p className="mt-1 text-sm text-stone">{allProducts.length} products</p>
         </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setFilterDrawerOpen(true)}
-            className="focus-ring border border-stone/30 px-4 py-2 text-xs uppercase tracking-wide lg:hidden"
-          >
-            Filters
-          </button>
-          <Select
-            aria-label="Sort by"
-            value={filters.sort}
-            onChange={(e) => {
-              const newParams = new URLSearchParams(params);
-              newParams.set("sort", e.target.value);
-              setParams(newParams);
-            }}
-            className="w-auto"
-          >
-            <option value="newest">Newest</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-            <option value="name-asc">Name: A–Z</option>
-          </Select>
-        </div>
+        {!isComingSoon && (
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setFilterDrawerOpen(true)}
+              className="focus-ring border border-stone/30 px-4 py-2 text-xs uppercase tracking-wide lg:hidden"
+            >
+              Filters
+            </button>
+            <Select
+              aria-label="Sort by"
+              value={filters.sort}
+              onChange={(e) => {
+                const newParams = new URLSearchParams(params);
+                newParams.set("sort", e.target.value);
+                setParams(newParams);
+              }}
+              className="w-auto"
+            >
+              <option value="newest">Newest</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A–Z</option>
+            </Select>
+          </div>
+        )}
       </div>
 
-      <div className="grid gap-10 lg:grid-cols-[240px_1fr]">
-        <aside className="hidden lg:block">
-          <FilterPanel filters={filters} onChange={updateFilters} allColors={allColors} allSizes={allSizes} onClearAll={clearAll} />
-        </aside>
-
-        <div>
-          {visibleProducts.length === 0 ? (
-            <p className="py-20 text-center text-sm text-stone">No products match your filters.</p>
-          ) : (
-            <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-3">
-              {visibleProducts.map((product) => (
-                <ProductCard key={product.id} product={product} onQuickView={setQuickViewProduct} />
-              ))}
-            </div>
-          )}
-
-          {visibleCount < allProducts.length && (
-            <div className="mt-10 flex justify-center">
-              <button
-                onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                className="focus-ring border border-ink px-8 py-3 text-xs uppercase tracking-wide hover:bg-ink hover:text-ivory"
-              >
-                Load More
-              </button>
-            </div>
-          )}
+      {isComingSoon ? (
+        <div className="flex flex-col items-center gap-2 py-24 text-center">
+          <h2 className="font-display text-2xl">Coming Soon</h2>
+          <p className="max-w-sm text-sm text-stone">
+            We&apos;re curating this collection and new pieces will land here soon. Check back shortly, or explore
+            what&apos;s live now.
+          </p>
         </div>
-      </div>
+      ) : (
+        <div className="grid gap-10 lg:grid-cols-[240px_1fr]">
+          <aside className="hidden lg:block">
+            <FilterPanel filters={filters} onChange={updateFilters} allColors={allColors} allSizes={allSizes} onClearAll={clearAll} />
+          </aside>
+
+          <div>
+            {visibleProducts.length === 0 ? (
+              <p className="py-20 text-center text-sm text-stone">No products match your filters.</p>
+            ) : (
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-3">
+                {visibleProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} onQuickView={setQuickViewProduct} />
+                ))}
+              </div>
+            )}
+
+            {visibleCount < allProducts.length && (
+              <div className="mt-10 flex justify-center">
+                <button
+                  onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+                  className="focus-ring border border-ink px-8 py-3 text-xs uppercase tracking-wide hover:bg-ink hover:text-ivory"
+                >
+                  Load More
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <Drawer open={filterDrawerOpen} onClose={() => setFilterDrawerOpen(false)} title="Filters" side="bottom">
         <FilterPanel filters={filters} onChange={updateFilters} allColors={allColors} allSizes={allSizes} onClearAll={clearAll} />
@@ -134,4 +147,22 @@ export function Catalog() {
 
 function titleCase(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+/**
+ * True when the empty result is because this category/subcategory has no products at all
+ * yet (e.g. Bags, Jewellery — announced but not yet stocked), as opposed to the shopper's
+ * own filters (size/color/price) excluding everything. Only checked when no refining
+ * filters are active, so "Coming Soon" never masks an overly-narrow filter combination.
+ */
+function isUnfilteredEmptyCategory(filters: ProductFilters): boolean {
+  const hasRefiningFilters =
+    Boolean(filters.colors?.length) ||
+    Boolean(filters.sizes?.length) ||
+    filters.minPriceCents != null ||
+    filters.maxPriceCents != null ||
+    Boolean(filters.inStockOnly) ||
+    Boolean(filters.query);
+  if (hasRefiningFilters) return false;
+  return Boolean(filters.category) || Boolean(filters.sub);
 }

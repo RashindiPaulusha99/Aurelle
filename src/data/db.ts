@@ -15,7 +15,7 @@ const KEYS = {
   customers: "aurelle:customers",
   coupons: "aurelle:coupons",
   heroSlides: "aurelle:heroSlides",
-  seeded: "aurelle:seeded:v2",
+  seeded: "aurelle:seeded:v3",
 } as const;
 
 function read<T>(key: string, fallback: T): T {
