@@ -19,7 +19,7 @@ export function AdminLayout() {
   return (
     <div className="flex min-h-screen bg-ivory text-ink">
       <aside className="w-56 shrink-0 border-r border-stone/15 bg-ink text-ivory">
-        <div className="px-5 py-5 font-display text-xl">AURELLE Admin</div>
+        <div className="px-5 py-5 font-display text-xl">VALESTRA Admin</div>
         <nav className="flex flex-col gap-1 px-3">
           {NAV.map((item) => (
             <NavLink

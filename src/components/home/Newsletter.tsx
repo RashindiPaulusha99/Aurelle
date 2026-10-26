@@ -10,7 +10,7 @@ export function Newsletter() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!email.includes("@")) return;
-    pushToast("You're on the list — welcome to AURELLE.", "success");
+    pushToast("You're on the list — welcome to VALESTRA.", "success");
     setEmail("");
   }
 

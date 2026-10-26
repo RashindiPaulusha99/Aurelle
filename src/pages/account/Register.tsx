@@ -27,7 +27,7 @@ export function Register() {
       return;
     }
     authLogin(result.customer.id);
-    pushToast("Account created — welcome to AURELLE", "success");
+    pushToast("Account created — welcome to VALESTRA", "success");
     navigate("/account");
   }
 

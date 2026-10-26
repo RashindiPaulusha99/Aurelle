@@ -5,8 +5,8 @@ import type { Customer } from "../types";
 export const CUSTOMERS: Customer[] = [
   {
     id: "cust-admin",
-    name: "Aurelle Admin",
-    email: "admin@aurelle.lk",
+    name: "Valestra Admin",
+    email: "admin@valestra.lk",
     phone: "+94 77 123 4567",
     password: "admin123",
     role: "admin",
@@ -17,7 +17,7 @@ export const CUSTOMERS: Customer[] = [
   {
     id: "cust-demo",
     name: "Nadeesha Kumari",
-    email: "demo@aurelle.lk",
+    email: "demo@valestra.lk",
     phone: "+94 71 987 6543",
     password: "demo123",
     role: "customer",

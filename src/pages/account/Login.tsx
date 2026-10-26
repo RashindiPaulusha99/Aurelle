@@ -35,8 +35,8 @@ export function Login() {
     <div className="mx-auto max-w-sm px-4 py-16 sm:px-6">
       <h1 className="font-display text-3xl">Log In</h1>
       <p className="mt-2 text-sm text-stone">
-        Demo accounts — customer: <code>demo@aurelle.lk</code> / <code>demo123</code>. Admin:{" "}
-        <code>admin@aurelle.lk</code> / <code>admin123</code>.
+        Demo accounts — customer: <code>demo@valestra.lk</code> / <code>demo123</code>. Admin:{" "}
+        <code>admin@valestra.lk</code> / <code>admin123</code>.
       </p>
       <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
         <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />

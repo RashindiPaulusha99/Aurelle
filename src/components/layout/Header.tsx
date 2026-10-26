@@ -115,8 +115,9 @@ export function Header() {
             </nav>
           </div>
 
-          <Link to="/" className="focus-ring justify-self-center font-display text-xl tracking-wide text-ink sm:text-2xl">
-            AURELLE
+          <Link to="/" className="focus-ring flex items-center gap-2 justify-self-center">
+            <img src="/images/logo-valestra.jpg" alt="VALESTRA" className="h-9 w-9 object-contain sm:h-10 sm:w-10" />
+            <span className="font-display text-xl tracking-wide text-ink sm:text-2xl">VALESTRA</span>
           </Link>
 
           <div className="flex items-center justify-self-end gap-1">

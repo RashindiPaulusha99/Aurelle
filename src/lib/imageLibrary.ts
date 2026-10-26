@@ -111,6 +111,11 @@ const FALLBACK_PHOTO_IDS = [
   "1605733513597-a8f8341084e6",
 ];
 
+/** Real local brand photography, keyed by seed — checked before the Unsplash buckets. */
+const LOCAL_OVERRIDES: Record<string, string> = {
+  "hero-1": "/images/hero-valestra.jpg",
+};
+
 function hashSeed(seed: string): number {
   let h = 0;
   for (let i = 0; i < seed.length; i++) {
@@ -130,6 +135,7 @@ function matchesKeyword(seed: string, keyword: string): boolean {
 
 /** Deterministically resolves a seed string to a real curated Unsplash photo URL. */
 export function resolveImageUrl(seed: string, width = 900): string {
+  if (LOCAL_OVERRIDES[seed]) return LOCAL_OVERRIDES[seed];
   const lower = seed.toLowerCase();
   const bucket = BUCKETS.find((b) => b.keywords.some((kw) => matchesKeyword(lower, kw)));
   const pool = bucket?.photoIds ?? FALLBACK_PHOTO_IDS;

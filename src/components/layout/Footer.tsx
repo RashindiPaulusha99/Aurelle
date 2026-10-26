@@ -22,7 +22,7 @@ const COLUMNS = [
   {
     heading: "Company",
     links: [
-      { label: "About AURELLE", href: "/about" },
+      { label: "About VALESTRA", href: "/about" },
       { label: "Returns Policy", href: "/policies/returns" },
       { label: "Privacy Policy", href: "/policies/privacy" },
       { label: "Terms of Service", href: "/policies/terms" },
@@ -36,7 +36,10 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 gap-10 sm:grid-cols-4">
           <div className="col-span-2 sm:col-span-1">
-            <span className="font-display text-2xl">AURELLE</span>
+            <div className="flex items-center gap-2">
+              <img src="/images/logo-valestra.jpg" alt="VALESTRA" className="h-9 w-9 rounded bg-ivory object-contain p-0.5" />
+              <span className="font-display text-2xl">VALESTRA</span>
+            </div>
             <p className="mt-3 max-w-xs text-sm text-ivory/60">
               Modern island essentials — editorial design, honest fabrics, made for Sri Lankan weather.
             </p>
@@ -62,7 +65,7 @@ export function Footer() {
             Payments: PayHere &middot; Visa &middot; Mastercard &middot; Cash on Delivery
           </p>
           <div className="flex gap-4 text-xs text-ivory/50">
-            <span>&copy; {new Date().getFullYear()} AURELLE. All rights reserved.</span>
+            <span>&copy; {new Date().getFullYear()} VALESTRA. All rights reserved.</span>
           </div>
         </div>
       </div>

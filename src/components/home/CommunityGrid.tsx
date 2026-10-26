@@ -8,7 +8,7 @@ const POSTS = Array.from({ length: 6 }, (_, i) => ({
 export function CommunityGrid() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-      <h2 className="mb-6 font-display text-2xl sm:text-3xl">#WearAURELLE</h2>
+      <h2 className="mb-6 font-display text-2xl sm:text-3xl">#WearVALESTRA</h2>
       <div className="grid grid-cols-3 gap-2 sm:gap-3">
         {POSTS.map((post) => (
           <div key={post.id} className="group relative overflow-hidden">

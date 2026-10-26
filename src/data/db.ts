@@ -78,7 +78,7 @@ export const db = {
   saveHeroSlides(slides: HeroSlide[]): void {
     write(KEYS.heroSlides, slides);
   },
-  /** Dev/demo escape hatch: wipes all AURELLE keys and re-seeds from the static mock arrays. */
+  /** Dev/demo escape hatch: wipes all VALESTRA keys and re-seeds from the static mock arrays. */
   resetAll(): void {
     if (typeof window === "undefined") return;
     Object.values(KEYS).forEach((k) => window.localStorage.removeItem(k));

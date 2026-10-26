@@ -29,7 +29,7 @@ export function AdminLogin() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-ink px-4">
       <div className="w-full max-w-sm bg-ivory p-8">
-        <h1 className="font-display text-2xl">AURELLE Admin</h1>
+        <h1 className="font-display text-2xl">VALESTRA Admin</h1>
         <p className="mt-2 text-xs text-stone">Demo credentials: admin@aurelle.lk / admin123</p>
         <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
           <Input label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
