@@ -10,6 +10,7 @@ interface PlaceholderImageProps {
   label?: string;
   className?: string;
   aspect?: "square" | "portrait" | "wide" | "tall";
+  objectPosition?: string;
 }
 
 const GRADIENTS = [
@@ -37,7 +38,13 @@ const ASPECT_CLASS: Record<NonNullable<PlaceholderImageProps["aspect"]>, string>
   tall: "aspect-[2/3]",
 };
 
-export function PlaceholderImage({ seed, label, className = "", aspect = "portrait" }: PlaceholderImageProps) {
+export function PlaceholderImage({
+  seed,
+  label,
+  className = "",
+  aspect = "portrait",
+  objectPosition,
+}: PlaceholderImageProps) {
   const [errored, setErrored] = useState(false);
   const gradient = GRADIENTS[hashSeed(seed) % GRADIENTS.length];
   const isDark = gradient.includes("#161412") || gradient.includes("#b4532a") || gradient.includes("#7a3a1e");
@@ -54,6 +61,7 @@ export function PlaceholderImage({ seed, label, className = "", aspect = "portra
           alt={label ?? seed}
           loading="lazy"
           className="h-full w-full object-cover"
+          style={objectPosition ? { objectPosition } : undefined}
           onError={() => setErrored(true)}
         />
       )}
