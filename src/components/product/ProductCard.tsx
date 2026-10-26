@@ -39,32 +39,38 @@ export function ProductCard({ product, onQuickView }: ProductCardProps) {
           {product.tags.includes("sale") && <Badge tone="sale">Sale</Badge>}
           {totalStock === 0 && <Badge tone="low-stock">Sold Out</Badge>}
         </div>
-      </Link>
 
-      <button
-        onClick={() => toggleWishlist(product.id)}
-        aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
-        aria-pressed={isWishlisted}
-        className="focus-ring absolute right-2 top-2 flex h-8 w-8 items-center justify-center bg-ivory/90 text-ink transition-colors hover:text-terracotta"
-      >
-        <svg width="16" height="16" viewBox="0 0 24 24" fill={isWishlisted ? "#b4532a" : "none"} aria-hidden="true">
-          <path
-            d="M12 20s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 5.5 5.5 5.5 0 0 1 21.5 11c-2.5 4.65-9.5 9-9.5 9Z"
-            stroke={isWishlisted ? "#b4532a" : "currentColor"}
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
-
-      {onQuickView && (
         <button
-          onClick={() => onQuickView(product)}
-          className="focus-ring absolute bottom-0 left-0 right-0 translate-y-full bg-ink/90 py-2.5 text-xs uppercase tracking-wide text-ivory opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+          onClick={(e) => {
+            e.preventDefault();
+            toggleWishlist(product.id);
+          }}
+          aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+          aria-pressed={isWishlisted}
+          className="focus-ring absolute right-2 top-2 flex h-8 w-8 items-center justify-center bg-ivory/90 text-ink transition-colors hover:text-terracotta"
         >
-          Quick View
+          <svg width="16" height="16" viewBox="0 0 24 24" fill={isWishlisted ? "#b4532a" : "none"} aria-hidden="true">
+            <path
+              d="M12 20s-7-4.35-9.5-9A5.5 5.5 0 0 1 12 5.5 5.5 5.5 0 0 1 21.5 11c-2.5 4.65-9.5 9-9.5 9Z"
+              stroke={isWishlisted ? "#b4532a" : "currentColor"}
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
-      )}
+
+        {onQuickView && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              onQuickView(product);
+            }}
+            className="focus-ring absolute bottom-0 left-0 right-0 translate-y-full bg-ink/90 py-2.5 text-xs uppercase tracking-wide text-ivory opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+          >
+            Quick View
+          </button>
+        )}
+      </Link>
 
       <div className="mt-3 flex flex-col gap-1">
         <Link to={`/product/${product.slug}`} className="focus-ring text-sm text-ink">
